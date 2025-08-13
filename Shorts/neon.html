@@ -1,0 +1,66 @@
+<!-- index.html -->
+<div class="wrapper">
+  <div class="glass-card">
+    <h2>✨ CSS Magic</h2>
+    <p>Hover me for glow + blur + shine 🔥</p>
+  </div>
+</div>
+
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.wrapper {
+  perspective: 1000px;
+}
+
+.glass-card {
+  width: 320px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: conic-gradient(from 0deg, #00f0ff, transparent, #ff00f0, transparent, #00f0ff);
+  animation: swirl 5s linear infinite;
+  z-index: 0;
+  opacity: 0.2;
+}
+
+.glass-card:hover {
+  transform: scale(1.08) rotateY(10deg);
+  box-shadow: 0 0 40px #00ffe7, 0 0 80px #ff00ff66;
+}
+
+.glass-card h2, .glass-card p {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes swirl {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>

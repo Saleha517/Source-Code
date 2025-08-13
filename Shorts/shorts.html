@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css Animation</title>
+</head>
+<style>
+body {
+  background: #111;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.6);
+}
+</style>
+
+<body>
+    <div class="card">
+  <h2>Hover Me!</h2>
+  <p>Pure CSS Animation</p>
+</div>
+</body>
+</html>
+
+
+

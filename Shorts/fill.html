@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rainbow Text Trail</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: black;
+      cursor: none;
+    }
+
+    .trail {
+      position: absolute;
+      font-size: 24px;
+      font-weight: bold;
+      pointer-events: none;
+      animation: fade 1s linear forwards;
+    }
+
+    @keyframes fade {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(2); }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  const colors = ['#ff0000', '#ffa500', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#8a2be2'];
+
+  document.addEventListener('mousemove', (e) => {
+    const span = document.createElement('span');
+    span.className = 'trail';
+    span.style.left = e.pageX + 'px';
+    span.style.top = e.pageY + 'px';
+    span.style.color = colors[Math.floor(Math.random() * colors.length)];
+    span.textContent = '★'; 
+
+    document.body.appendChild(span);
+
+    setTimeout(() => {
+      span.remove();
+    }, 1000);
+  });
+</script>
+
+</body>
+</html>

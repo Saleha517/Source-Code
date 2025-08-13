@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button-Hover</title>
+</head>
+<style>
+body {
+  background: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.neon-button {
+  color: #fff;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 15px 40px;
+  border: 2px solid #00ffff;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: transparent;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 0 15px #00ffff;
+}
+
+.neon-button:hover {
+  background: #00ffff;
+  color: #0f0f0f;
+  box-shadow: 0 0 20px #00ffff,
+              0 0 30px #00ffff,
+              0 0 40px #00ffff,
+              0 0 50px #00ffff;
+  transform: scale(1.05);
+}
+</style>
+<body>
+    <div class="neon-wrapper">
+  <a href="#" class="neon-button">Click Me</a>
+</div>
+</body>
+</html>

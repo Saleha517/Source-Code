@@ -1,0 +1,28 @@
+Assalmoalikum Welcome guyz
+
+Today we are learning about HTML Tables 
+
+
+table (Parent tag)
+th (Table heading)
+td (Table data)
+tr (Table row)
+
+
+for styling we need to add the cdn of bootsrap 5 
+lets make it
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 60%;
+  }
+  th, td {
+    border: 1px solid gray;
+    padding: 8px;
+    text-align: center;
+  }
+  th {
+    background-color: lightblue;
+  }
+</style>   this is some styling 

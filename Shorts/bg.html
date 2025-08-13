@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Avatar Login Form</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to right, #141e30, #243b55);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .container {
+      background: #1f2a38;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #000;
+      width: 300px;
+      text-align: center;
+    }
+
+    .avatar {
+      font-size: 60px;
+      transition: transform 0.3s;
+    }
+
+    .avatar.happy {
+      content: "😊";
+    }
+
+    .avatar.sad {
+      animation: shake 0.3s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-10px); }
+      100% { transform: translateX(0); }
+    }
+
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    input {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px;
+      background: #00ffb3;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      color: #000;
+    }
+
+    .message {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="avatar" class="avatar">😐</div>
+    <form id="loginForm">
+      <input type="text" placeholder="Username" id="username" required />
+      <input type="password" placeholder="Password" id="password" required />
+      <button type="submit">Login</button>
+    </form>
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const avatar = document.getElementById("avatar");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      // Dummy credentials
+      if (user === "saleha" && pass === "1234") {
+        avatar.textContent = "😊";
+        avatar.classList.remove("sad");
+        avatar.classList.add("happy");
+        message.textContent = "Login successful!";
+        message.style.color = "#00ffb3";
+      } else {
+        avatar.textContent = "😠";
+        avatar.classList.remove("happy");
+        avatar.classList.add("sad");
+        message.textContent = "Invalid username or password.";
+        message.style.color = "#ff4b5c";
+      }
+    });
+  </script>
+</body>
+</html>
