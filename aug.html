@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>14 August – Pakistan Independence Day Animation</title>
+  <!-- Optional fonts for nicer headings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Noto+Nastaliq+Urdu:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --green-1:#0b6b3a;
+      --green-2:#0f8c4a;
+      --green-3:#0aa360;
+      --white:#ffffff;
+      --gold:#ffd166;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 50% 110%,rgba(255,255,255,.06),transparent),
+                  radial-gradient(900px 600px at 0% -10%,rgba(255,255,255,.08),transparent),
+                  linear-gradient(135deg,var(--green-1),var(--green-2),var(--green-3));
+      color:var(--white);
+      overflow:hidden;
+      font-family: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    /* Subtle moving gradient */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      background: radial-gradient(40% 60% at 70% 30%, rgba(255,255,255,.08), transparent 60%),
+                  radial-gradient(35% 55% at 30% 70%, rgba(255,255,255,.06), transparent 60%);
+      mix-blend-mode: soft-light;
+      animation: drift 18s ease-in-out infinite alternate;
+      pointer-events:none;
+    }
+    @keyframes drift{from{transform:translate(-2%,2%)} to{transform:translate(2%,-2%)}}
+
+    .wrap{
+      height:100%; width:100%;
+      display:grid;
+      place-items:center;
+      padding: clamp(16px, 3vw, 48px);
+    }
+
+    .stage{
+      position:relative;
+      width:min(980px, 92vw);
+      aspect-ratio: 16 / 9;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      outline: 1px solid rgba(255,255,255,.12);
+    }
+
+    /* Headings */
+    .title{
+      position:absolute; z-index:3; inset:auto 0 4.5% 0;
+      text-align:center; padding:0 24px;
+    }
+    .title .en{
+      font-weight:800; letter-spacing:.6px;
+      font-size: clamp(20px, 4vw, 40px);
+      text-shadow: 0 2px 10px rgba(0,0,0,.3);
+    }
+    .title .ur{
+      margin-top:.2rem;
+      font-family: 'Noto Nastaliq Urdu', serif; 
+      font-size: clamp(22px, 4.5vw, 46px);
+      line-height:1.2;
+      text-shadow: 0 2px 10px rgba(0,0,0,.35);
+    }
+
+    /* Waving Pakistan Flag (SVG + filter) */
+    .flag{
+      position:absolute; inset:8% auto auto 6%;
+      width:min(48%, 520px); aspect-ratio: 3 / 2; /* cinematic crop */
+      filter: drop-shadow(0 16px 24px rgba(0,0,0,.35));
+      transform-origin:left center;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float{50%{transform: translateY(-6px) rotate(-0.4deg)} }
+
+    /* Flag pole */
+    .pole{
+      position:absolute; left: 4.2%; top: 7%; bottom: 7%; width: 10px; 
+      background: linear-gradient(#c0c7ce,#8e9aa7);
+      border-radius: 10px; z-index:1;
+      box-shadow: inset 0 0 8px rgba(0,0,0,.25), 0 8px 20px rgba(0,0,0,.3);
+    }
+    .finial{
+      position:absolute; left: 3.8%; top: 5.1%; width: 22px; height:22px;
+      background: radial-gradient(circle at 35% 35%, #fff, #c9d6df 35%, #8e9aa7 70%);
+      border-radius:50%; z-index:2; 
+      box-shadow: 0 8px 18px rgba(0,0,0,.35);
+    }
+
+    /* Fireworks */
+    .fireworks{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .burst{
+      position:absolute; width:4px; height:4px; border-radius:50%;
+      background:var(--white); opacity:0;
+      box-shadow: 0 0 0 2px rgba(255,255,255,.7), 0 0 16px rgba(255,255,255,.9);
+      animation: pop 1.6s ease-out infinite;
+    }
+    @keyframes pop{
+      0%{ transform: scale(.2); opacity:0 }
+      10%{ opacity:1 }
+      80%{ transform: scale(12); opacity:.8 }
+      100%{ transform: scale(14); opacity:0 }
+    }
+    /* We place many tiny sparkles using CSS variables */
+    .sparkle{
+      position:absolute; width:2px; height:2px; border-radius:50%;
+      background:rgba(255,255,255,.9); filter: blur(.3px);
+      animation: floatUp var(--dur,10s) linear infinite;
+      opacity:.9;
+    }
+    @keyframes floatUp{ from{ transform: translateY(12%);} to{ transform: translateY(-120%);} }
+
+    /* Ribbon confetti stripes */
+    .ribbon{ position:absolute; width:2px; height:80px; background: #fff; opacity:.45; 
+      transform: rotate(0deg); animation: ribbon 5.5s ease-in-out infinite; mix-blend-mode: screen; }
+    @keyframes ribbon{ 50%{ transform: translateY(-40vh) rotate(360deg);} }
+
+    /* Badge */
+    .badge{
+      position:absolute; right: 6%; top: 10%; z-index:3;
+      padding: 10px 16px; border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.25);
+      font-weight:700; letter-spacing:.4px; box-shadow: var(--shadow);
+    }
+
+    /* Call-to-action (for YT Shorts lower-third) */
+    .cta{
+      position:absolute; left:50%; transform:translateX(-50%);
+      bottom: 10%; z-index:3; display:flex; gap:10px; align-items:center;
+      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28);
+      padding: 10px 16px; border-radius: 14px; backdrop-filter: blur(4px);
+      font-weight:700; text-transform: uppercase; font-size: clamp(12px, 2vw, 14px);
+      box-shadow: var(--shadow);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse{ 50%{ box-shadow: 0 0 0 10px rgba(255,255,255,.06), var(--shadow);} }
+
+    .star{ width:12px; height:12px; background:var(--gold); clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); filter: drop-shadow(0 2px 4px rgba(0,0,0,.4)); }
+
+    /* Watermark (optional) */
+    .wm{ position:absolute; right:10px; bottom:8px; opacity:.5; font-size:12px; }
+
+    /* Responsive tweaks */
+    @media (max-width:640px){
+      .flag{ width:68%; left:50%; transform: translateX(-50%); }
+      .pole, .finial{ display:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="stage" role="img" aria-label="Pakistan Independence Day animation with a waving flag, fireworks and celebratory text">
+
+      <div class="pole"></div>
+      <div class="finial"></div>
+
+      <!-- Waving Pakistan Flag -->
+      <svg class="flag" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Wave filter -->
+          <filter id="wavy">
+            <feTurbulence type="fractalNoise" baseFrequency="0.01 0.03" numOctaves="2" seed="3" result="noise">
+              <animate attributeName="seed" values="0;50" dur="8s" repeatCount="indefinite"/>
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <!-- Crescent -->
+          <mask id="crescent-mask">
+            <rect width="100%" height="100%" fill="black"/>
+            <circle cx="190" cy="100" r="44" fill="white"/>
+            <circle cx="203" cy="100" r="34" fill="black"/>
+          </mask>
+        </defs>
+        <g filter="url(#wavy)">
+          <!-- White vertical bar (1/4 width) -->
+          <rect width="75" height="200" fill="#ffffff"/>
+          <!-- Green field -->
+          <rect x="75" width="225" height="200" fill="#01411C"/>
+          <!-- Crescent -->
+          <rect x="75" width="225" height="200" fill="#ffffff" mask="url(#crescent-mask)"/>
+          <!-- 5-pointed star -->
+          <g transform="translate(220,92) scale(0.9)">
+            <polygon points="0,-18 5.3,-5.6 18, -5.6 7.3,2.1 11.2,15 0,7 -11.2,15 -7.3,2.1 -18,-5.6 -5.3,-5.6" fill="#ffffff"/>
+          </g>
+        </g>
+      </svg>
+
+      <!-- Fireworks container -->
+      <div class="fireworks" id="fw"></div>
+
+      <!-- Badge and titles -->
+      <div class="badge">14 August • 1947 – Forever</div>
+
+      <div class="title">
+        <div class="en">Happy Independence Day, Pakistan! 🇵🇰</div>
+        <div class="ur">۱۴ اگست مبارک — پاکستان زندہ باد</div>
+      </div>
+
+      <div class="cta" aria-hidden="true">
+        <div class="star"></div>
+        Tap Like • Share • Subscribe
+      </div>
+
+      <div class="wm">@SalehaUsman</div>
+    </div>
+  </div>
+
+  <script>
+    // --- Fireworks + sparkles + ribbons generator ---
+    const fw = document.getElementById('fw');
+
+    function rand(min, max){ return Math.random() * (max - min) + min; }
+
+    function spawnBurst(){
+      const b = document.createElement('div');
+      b.className = 'burst';
+      b.style.left = rand(10, 90) + '%';
+      b.style.top = rand(8, 48) + '%';
+      b.style.animationDuration = rand(1.3, 2) + 's';
+      fw.appendChild(b);
+      setTimeout(()=> b.remove(), 2000);
+    }
+
+    function spawnSparkle(){
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = rand(0,100) + '%';
+      s.style.bottom = '-5%';
+      s.style.opacity = rand(.5, .95);
+      s.style.width = s.style.height = rand(1,3) + 'px';
+      s.style.setProperty('--dur', rand(8, 14) + 's');
+      fw.appendChild(s);
+      setTimeout(()=> s.remove(), 15000);
+    }
+
+    function spawnRibbon(){
+      const r = document.createElement('div');
+      r.className = 'ribbon';
+      r.style.left = rand(0,100) + '%';
+      r.style.top = rand(0,25) + '%';
+      r.style.height = rand(50,110) + 'px';
+      r.style.animationDuration = rand(4.5, 7) + 's';
+      r.style.opacity = rand(.25,.6);
+      fw.appendChild(r);
+      setTimeout(()=> r.remove(), 7000);
+    }
+
+    // Initial fill
+    for(let i=0;i<12;i++) spawnBurst();
+    for(let i=0;i<80;i++) spawnSparkle();
+    for(let i=0;i<6;i++) spawnRibbon();
+
+    // Continuous spawning
+    setInterval(()=> spawnBurst(), 350);
+    setInterval(()=> spawnSparkle(), 180);
+    setInterval(()=> spawnRibbon(), 1200);
+
+    // Optional: press space to toggle lower-third CTA
+    document.addEventListener('keydown', (e)=>{
+      if(e.code === 'Space'){
+        document.querySelector('.cta').classList.toggle('hide');
+      }
+    });
+  </script>
+</body>
+</html>
